@@ -7,13 +7,15 @@
 .task-manager-header {
   font-size: 2em;
   margin-bottom: 20px;
+  font-weight: bold;
+  color: #4CAF50;
 }
 
 .task-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto;
   background-color: #fff;
   padding: 20px;
@@ -29,13 +31,20 @@
 .form-group label {
   margin-bottom: 5px;
   font-weight: bold;
+  color: #333;
 }
 
-input[type="text"], textarea {
+input[type="text"], textarea, select, input[type="date"] {
   padding: 10px;
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, textarea:focus, select:focus, input[type="date"]:focus {
+  border-color: #4CAF50;
 }
 
 textarea {
@@ -51,8 +60,20 @@ button.submit-btn {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button.submit-btn:hover {
   background-color: #0056b3;
+}
+
+
+@media (max-width: 768px) {
+  .task-form {
+    max-width: 90%;
+  }
+
+  .task-manager-header {
+    font-size: 1.5em;
+  }
 }
