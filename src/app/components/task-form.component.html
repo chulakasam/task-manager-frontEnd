@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style >
+
+  </style>
+</head>
+<body>
+<main class="main">
+  <div class="task-manager-header">Task Manager</div>
+
+  <form  class="task-form">
+    <div class="form-group">
+      <label for="title">Task Title</label>
+      <input type="text" id="title"  />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description"  name="description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select id="status"  name="status" required>
+        <option value="completed">Completed</option>
+        <option value="pending">Pending</option>
+        <option value="not-started">Not Started</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="createdDate">Creation Date</label>
+      <input type="date" id="createdDate"  name="createdDate" required />
+    </div>
+
+    <button type="submit" class="submit-btn">Add Task</button>
+  </form>
+</main>
+
+</body>
+</html>
