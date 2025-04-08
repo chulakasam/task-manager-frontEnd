@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
   <title>Title</title>
-  <style >
-
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <main class="main">
@@ -33,9 +30,15 @@
     </div>
 
     <div>
-      <label>Creation Date</label>
-      <input type="date" [(ngModel)]="task.createdDate" name="createdDate" required />
+      <label>Creation Date & Time</label>
+      <input
+        type="datetime-local"
+        [(ngModel)]="task.createdDate"
+        name="createdDate"
+        required
+      />
     </div>
+
 
     <button type="submit">Add Task</button>
   </form>
