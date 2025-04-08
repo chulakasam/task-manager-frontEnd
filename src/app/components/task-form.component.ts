@@ -1,23 +1,30 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css'],
   standalone: true,
-  imports: []
+  imports: [FormsModule],
 })
 export class TaskFormComponent {
-  title = '';
-  description = '';
-  completed = false;
+  task = {
+    title: '',
+    description: '',
+    status: 'pending',
+    createdDate: ''
+  };
 
   onSubmit() {
-    console.log('New task added:', { title: this.title, description: this.description, completed: this.completed });
+    console.log('New task added:', this.task);
 
-
-    this.title = '';
-    this.description = '';
-    this.completed = false;
+    // Reset form after submission
+    this.task = {
+      title: '',
+      description: '',
+      status: 'pending',
+      createdDate: ''
+    };
   }
 }
