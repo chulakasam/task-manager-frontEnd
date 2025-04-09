@@ -15,4 +15,9 @@ export class TaskService {
   getAllTasks(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  deleteTask(title: string) {
+    return this.http.delete(`http://localhost:5050/api/v1/task/${title}`);
+  }
+
 }
