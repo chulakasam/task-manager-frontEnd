@@ -59,6 +59,21 @@ export class TaskFormComponent implements OnInit {
       }
     });
   }
+  deleteTasks(id: string) {
+    if (confirm('Are you sure you want to delete this task?')) {
+      console.log('Deleting task:', id);
+      this.taskService.deleteTask(id).subscribe({
+        next: () => {
+          this.tasks = this.tasks.filter(task => task.id !== id);
+          console.log('Task deleted successfully');
+          this.loadTasks();
+        },
+        error: (err) => {
+          console.error('Error deleting task:', err);
+        }
+      });
+    }
+  }
 
 
 
