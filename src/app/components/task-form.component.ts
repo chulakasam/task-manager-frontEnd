@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {TaskService} from './task.service';
 import {CommonModule} from '@angular/common';
+import {MatIcon} from '@angular/material/icon';
 
 
 @Component({
@@ -10,7 +11,7 @@ import {CommonModule} from '@angular/common';
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css'],
   standalone: true,
-  imports: [CommonModule,FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, MatIcon],
 })
 export class TaskFormComponent implements OnInit {
   task = {
