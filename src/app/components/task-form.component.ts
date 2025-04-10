@@ -23,7 +23,7 @@ export class TaskFormComponent implements OnInit {
     createdAt: ''
   };
 
-  tasks: Task[] = []; // Use Task type here as well
+  tasks: Task[] = [];
 
   constructor(private taskService: TaskService) {}
 
@@ -54,7 +54,7 @@ export class TaskFormComponent implements OnInit {
 
   loadTasks(): void {
     this.taskService.getAllTasks().subscribe({
-      next: (data: Task[]) => { // Make sure the response is typed as an array of Task
+      next: (data: Task[]) => {
         this.tasks = data;
       },
       error: (err) => {
