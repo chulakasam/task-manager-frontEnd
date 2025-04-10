@@ -40,7 +40,8 @@
     </div>
 
 
-    <button type="submit">Add Task</button>
+    <button type="submit">{{ task.id ? 'Update Task' : 'Add Task' }}</button>
+
   </form>
 
 </main>
@@ -80,11 +81,6 @@
         </button>
 
       </div>
-
-
-
-
-
 
     </div>
   </div>

@@ -27,26 +27,38 @@ export class TaskFormComponent implements OnInit {
 
   constructor(private taskService: TaskService) {}
 
-  onSubmit() {
+
+
+  onSubmit(): void {
     this.task.createdAt = new Date().toISOString();
 
-    this.taskService.addTask(this.task).subscribe({
-      next: (response) => {
-        console.log('Task successfully added:', response);
-        this.task = {
-          id:'',
-          title: '',
-          description: '',
-          status: 'pending',
-          createdAt: ''
-        };
-        this.loadTasks();
-      },
-      error: (err) => {
-        console.error('Error adding task:', err);
-      }
-    });
+    if (this.task.id) {
+
+      this.taskService.updateTask(this.task).subscribe({
+        next: (response) => {
+          console.log('Task successfully updated:', response);
+
+          this.loadTasks();
+        },
+        error: (err) => {
+          console.error('Error updating task:', err);
+        }
+      });
+    } else {
+
+      this.taskService.addTask(this.task).subscribe({
+        next: (response) => {
+          console.log('Task successfully added:', response);
+
+          this.loadTasks();
+        },
+        error: (err) => {
+          console.error('Error adding task:', err);
+        }
+      });
+    }
   }
+
 
   ngOnInit(): void {
     this.loadTasks();

@@ -26,4 +26,7 @@ export class TaskService {
     return this.http.get<Task>(`http://localhost:5050/taskManager/api/v1/task/${id}`);
   }
 
+  updateTask(task: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${task.id}`, task);
+  }
 }
