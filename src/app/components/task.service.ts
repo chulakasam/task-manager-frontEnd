@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Task } from '../models/Task';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
@@ -20,5 +21,9 @@ export class TaskService {
     return this.http.delete(`http://localhost:5050/taskManager/api/v1/task/${id}`);
   }
 
+
+  getSelectedTask(id: string): Observable<Task> {
+    return this.http.get<Task>(`http://localhost:5050/taskManager/api/v1/task/${id}`);
+  }
 
 }

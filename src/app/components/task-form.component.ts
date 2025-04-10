@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {TaskService} from './task.service';
-import {CommonModule} from '@angular/common';
-import {MatIcon} from '@angular/material/icon';
+import { TaskService } from './task.service';
+import { CommonModule } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import {Task} from '../models/Task'
 
 
 @Component({
@@ -11,16 +12,19 @@ import {MatIcon} from '@angular/material/icon';
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, MatIcon],
+  imports: [CommonModule, FormsModule, HttpClientModule],
 })
 export class TaskFormComponent implements OnInit {
-  task = {
+  task: Task = {
+    id:'',
     title: '',
     description: '',
     status: 'pending',
     createdAt: ''
   };
-  tasks: any[] = [];
+
+  tasks: Task[] = []; // Use Task type here as well
+
   constructor(private taskService: TaskService) {}
 
   onSubmit() {
@@ -29,15 +33,13 @@ export class TaskFormComponent implements OnInit {
     this.taskService.addTask(this.task).subscribe({
       next: (response) => {
         console.log('Task successfully added:', response);
-
-
         this.task = {
+          id:'',
           title: '',
           description: '',
           status: 'pending',
           createdAt: ''
         };
-
         this.loadTasks();
       },
       error: (err) => {
@@ -52,7 +54,7 @@ export class TaskFormComponent implements OnInit {
 
   loadTasks(): void {
     this.taskService.getAllTasks().subscribe({
-      next: (data) => {
+      next: (data: Task[]) => { // Make sure the response is typed as an array of Task
         this.tasks = data;
       },
       error: (err) => {
@@ -60,6 +62,7 @@ export class TaskFormComponent implements OnInit {
       }
     });
   }
+
   deleteTasks(id: string) {
     if (confirm('Are you sure you want to delete this task?')) {
       console.log('Deleting task:', id);
@@ -76,9 +79,15 @@ export class TaskFormComponent implements OnInit {
     }
   }
 
-
-
-
-
-
+  searchTasks(id: string): void {
+    this.taskService.getSelectedTask(id).subscribe({
+      next: (data: Task) => {
+        console.log('Fetched task:', data);
+        this.task = data;
+      },
+      error: (err) => {
+        console.error('Failed to load task:', err);
+      }
+    });
+  }
 }
